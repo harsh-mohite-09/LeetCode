@@ -31,6 +31,13 @@
 // };
 
 // O(J+S) => O(n)
+
+// 1. Make an obj with keys of all the jewels and store true as value.
+// 2. Use this object to check whether the jewel is present in your stones or not.
+
+// This appraoch is O(n) as it is 2 for loops with O(jewels.length) & O(stones.length)
+// O(J) + O(S) = O(J+S) = O(n);
+
 const numJewelsInStones = function (jewels, stones) {
   let count = 0;
   let obj = {};
