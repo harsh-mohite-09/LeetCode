@@ -30,8 +30,41 @@ var maximum69Number = function (num) {
   return Math.max(...myNum, num);
 };
 
-var maximum69Number = function (num) {};
+var maximum69Number = function (num) {
+  let max = 0;
+  numStr = [...num.toString()];
+  for (let i = 0; i < numStr.length; i++) {
+    let a = [...numStr]; //new copy
+    if (a[i] === 9) a[i] = 6;
+    else a[i] = 9;
+    let b = parseInt(a.join(""));
+    if (max < b) max = b;
+  }
+  return max;
+};
 
-// console.log(maximum69Number(9669));
-// console.log(maximum69Number(9996));
-// console.log(maximum69Number(9999));
+// Best approach is just to replace the first 6 with a 9.
+
+var maximum69Number = (num) => +(num + "").replace("6", "9");
+
+var maximum69Number = (num) => {
+  let str = num + "";
+  let n = str.length;
+  let i = str.indexOf("6");
+  return i !== -1 ? num + 3 * 10 ** (n - i - 1) : num;
+};
+
+var maximum69Number = (num) => {
+  let arr = [...num.toString()];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "6") {
+      arr[i] = "9";
+      break;
+    }
+  }
+  return +arr.join("");
+};
+
+console.log(maximum69Number(9669));
+console.log(maximum69Number(9996));
+console.log(maximum69Number(9999));
