@@ -34,6 +34,31 @@ var containsNearbyDuplicate = function (nums, k) {
   return false;
 };
 
+var containsNearbyDuplicate = function (nums, k) {
+  const obj = {};
+  for (let i = 0; i < nums.length; i++) {
+    if (obj[nums[i]] !== undefined && Math.abs(obj[nums[i]] - i) <= k) {
+      return true;
+    } else {
+      obj[nums[i]] = i;
+    }
+  }
+  return false;
+};
+
+var containsNearbyDuplicate = function (nums, k) {
+  const obj = {};
+
+  return nums.reduce((acc, curr, i) => {
+    if (obj[curr] !== undefined && Math.abs(obj[curr] - i) <= k) return true;
+    else {
+      obj[curr] = i;
+      return acc;
+    }
+  }, false);
+};
+
 console.log(containsNearbyDuplicate([1, 2, 3, 1], 3));
 console.log(containsNearbyDuplicate([1, 0, 1, 1], 1));
 console.log(containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2));
+console.log(containsNearbyDuplicate([4, 1, 2, 3, 1, 5], 3));
