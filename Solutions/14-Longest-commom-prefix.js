@@ -17,13 +17,13 @@
 
 var longestCommonPrefix = function (strs) {
   let output = "";
-  let maxLength = Math.max(...strs.map((e) => e.length));
-  for (let i = 0; i < maxLength; i++) {
+  let minLength = Math.min(...strs.map((e) => e.length));
+  for (let i = 0; i < minLength; i++) {
     let commonArr = [];
     for (let j = 0; j < strs.length; j++) {
       commonArr.push(strs[j][i]);
+      if (j > 0 && commonArr[j - 1] !== strs[j][i]) return output;
     }
-    if (commonArr.some((e) => e !== commonArr[0])) return output;
     output += commonArr[0];
   }
   return output;
