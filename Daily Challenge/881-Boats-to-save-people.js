@@ -27,22 +27,18 @@
 var numRescueBoats = function (people, limit) {
   let boats = 0;
   people.sort((a, b) => a - b);
-  console.log(people);
-  for (let i = 0; i < people.length; i++) {
-    console.log("i", i);
-    if (people[i] >= limit) boats++;
-    else if (people[i] + people[i + 1] <= limit) {
-      boats++;
-      i++;
-    } else {
-      boats++;
-    }
+  let left = 0;
+  let right = people.length - 1;
+  while (left <= right) {
+    boats++;
+    if (people[left] + people[right] <= limit) left++;
+    right--;
   }
   return boats;
 };
 
-// console.log(numRescueBoats([1, 2], 3));
-// console.log(numRescueBoats([3, 2, 2, 1], 3));
-// console.log(numRescueBoats([3, 5, 3, 4], 5));
-// console.log(numRescueBoats([1, 1, 1, 2, 2, 3, 3, 4, 5], 3));
+console.log(numRescueBoats([1, 2], 3)); //1
+console.log(numRescueBoats([3, 2, 2, 1], 3)); //3
+console.log(numRescueBoats([3, 5, 3, 4], 5)); //4
+console.log(numRescueBoats([1, 1, 1, 2, 2, 3, 3, 4, 5], 3)); // 7
 console.log(numRescueBoats([5, 1, 4, 2], 6)); //2
