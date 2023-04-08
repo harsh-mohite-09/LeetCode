@@ -29,6 +29,13 @@ var pivotInteger = function (n) {
   return -1;
 };
 
+var pivotInteger = function (n) {
+  for (let i = 1; i <= n; i++) {
+    if ((i * (i + 1)) / 2 === (n * (n + 1) - i * (i - 1)) / 2) return i;
+  }
+  return -1;
+};
+
 console.log(pivotInteger(8)); // 6
 console.log(pivotInteger(1)); // 1
 console.log(pivotInteger(4)); // -1
