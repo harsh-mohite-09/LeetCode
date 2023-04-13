@@ -26,6 +26,8 @@
 // popped.length == pushed.length
 // popped is a permutation of pushed.
 
+// Best approach for this questions constraints
+
 var validateStackSequences = function (pushed, popped) {
   stack = [];
   let n = 2 * pushed.length;
@@ -45,8 +47,22 @@ var validateStackSequences = function (pushed, popped) {
   return true;
 };
 
+// Best generic solution
+var validateStackSequences = function (pushed, popped) {
+  const stack = [];
+  let i = 0;
+  for (const num of pushed) {
+    stack.push(num);
+    while (stack.length && stack.at(-1) === popped[i]) {
+      stack.pop();
+      i++;
+    }
+  }
+  return pushed.length === i;
+};
+
 console.log(validateStackSequences([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]));
 console.log(validateStackSequences([1, 2, 3, 4, 5], [4, 1, 3, 2, 5]));
-console.log(validateStackSequences([1, 2, 3, 4, 5], [4, 3, 5, 1, 2]));
-console.log(validateStackSequences([2, 1, 0], [1, 2, 0]));
-console.log(validateStackSequences([2, 3, 0, 1], [0, 3, 2, 1]));
+// console.log(validateStackSequences([1, 2, 3, 4, 5], [4, 3, 5, 1, 2]));
+// console.log(validateStackSequences([2, 1, 0], [1, 2, 0]));
+// console.log(validateStackSequences([2, 3, 0, 1], [0, 3, 2, 1]));
